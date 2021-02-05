@@ -4,27 +4,27 @@
     <table>
       <tr>
         <th>#</th>
-        <th>Test in</th>
-        <th>Test out</th>
-        <th>Delete</th>
+        <th>{{$t("message.TestIn")}}</th>
+        <th>{{$t("message.TestOut")}}</th>
+        <th>{{$t("message.Delete")}}</th>
       </tr>
       <tr v-for="item in list.testcases">
         <td>{{ item.uuid.slice(0, 8) }}</td>
         <td><a :href="testcaseUrl(item, 'in')" target="_blank" @click="search(item)">test.in</a></td>
         <td><a :href="testcaseUrl(item, 'out')" target="_blank">test.out</a></td>
         <td>
-          <Button type="text" @click="del(item)">Delete</Button>
+          <Button type="text" @click="del(item)">{{$t("message.Delete")}}</Button>
         </td>
       </tr>
     </table>
-    <h1>Create New</h1>
+    <h1>{{$t("message.CreateNew")}}</h1>
     <p>In</p>
     <Input v-model="test.in" type="textarea" :autosize="{minRows: 5,maxRows: 25}"></Input>
     <p>Out</p>
     <Input v-model="test.out" type="textarea" :autosize="{minRows: 5,maxRows: 25}"></Input>
     <br>
     <br>
-    <Button type="primary" @click="create"> Submit </Button>
+    <Button type="primary" @click="create"> {{$t("message.Submit")}} </Button>
   </div>
 </template>
 
@@ -33,6 +33,28 @@ import { mapGetters } from 'vuex'
 import { testcaseUrl } from '@/util/helper'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          TestIn: '测试输入',
+          TestOut: '测试输出',
+          Delete: '删除',
+          CreateNew: '新建',
+          Submit: '提交'
+        }
+      },
+      en_US: {
+        message: {
+          TestIn: 'Test In',
+          TestOut: 'Test Out',
+          Delete: 'Delete',
+          CreateNew: 'Create New',
+          Submit: 'Submit'
+        }
+      }
+    }
+  },
   data: () => ({
     test: {
       pid: '',

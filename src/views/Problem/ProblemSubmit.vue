@@ -2,9 +2,9 @@
   <div>
     <h1>{{ this.$route.params.pid }}:  {{ title }}</h1>
     <submit></submit>
-    <Button type="primary" @click="submit" :disabled="!isLogined">Submit</Button>
-    <Button type="ghost" style="margin-left: 8px" @click="reset">Reset</Button>
-    <p v-if="!isLogined">Please Log in First</p>
+    <Button type="primary" @click="submit" :disabled="!isLogined">{{$t("message.Submit")}}</Button>
+    <Button type="ghost" style="margin-left: 8px" @click="reset">{{$t("message.Reset")}}</Button>
+    <p v-if="!isLogined">{{$t("message.PleaseLoginFirst")}}</p>
   </div>
 </template>
 
@@ -14,6 +14,24 @@ import { mapGetters, mapActions } from 'vuex'
 import * as types from '../../store/types'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          Submit: '提交',
+          Reset: '重置',
+          PleaseLoginFirst: '请先登录'
+        }
+      },
+      en_US: {
+        message: {
+          Submit: 'Submit',
+          Reset: 'Reset',
+          PleaseLoginFirst: 'Please Log in First'
+        }
+      }
+    }
+  },
   data: () => ({
     title: ''
   }),

@@ -12,32 +12,52 @@
     </Card>
     <br>
     <Form :model="form" label-position="top" class="form">
-        <FormItem>
-            <Input v-model="form.content" type="textarea" :autosize="{minRows: 2,maxRows: 20}"></Input>
-        </FormItem>
-        <FormItem>
-          <Button
-            type="primary"
-            @click="createNew"
-            :loading="loading"
-            :disabled="!isLogined"
-          >Add a reply</Button>
-          <span v-if="!isLogined">Login to reply</span>
-        </FormItem>
+      <FormItem>
+          <Input v-model="form.content" type="textarea" :autosize="{minRows: 2,maxRows: 20}"></Input>
+      </FormItem>
+      <FormItem>
+        <Button
+          type="primary"
+          @click="createNew"
+          :loading="loading"
+          :disabled="!isLogined"
+          >{{ $t("message.Addareply") }}</Button>
+        <span v-if="!isLogined">Login to reply</span>
+      </FormItem>
     </Form>
-    <span>You will receive notifications through your email, if anyone replies</span>
+    <span>{{
+      $t("message.Youwillreceivenotificationsthroughyouremailifanyonereplies")
+    }}</span>
   </div>
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
-  export default {
-    props: {
-      did: {
-        required: true
+export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          Addareply: '回复',
+          Youwillreceivenotificationsthroughyouremailifanyonereplies:
+            '如果有人回复，你将收到邮件通知。'
+        }
+      },
+      en_US: {
+        message: {
+          Addareply: 'Add a reply',
+          Youwillreceivenotificationsthroughyouremailifanyonereplies:
+            'You will receive notifications through your email, if anyone replies'
+        }
       }
-    },
+    }
+  },
+  props: {
+    did: {
+      required: true
+    }
+  },
     data () {
       return {
         loading: false,
