@@ -1,7 +1,7 @@
 <template lang="html">
   <div>
     <Row type="flex" justify="start">
-      <Col :span="2" class="label">Title</Col>
+      <Col :span="2" class="label">{{$t(message.Title)}}</Col>
       <Col :span="21">
         <Input v-model="news.title"></Input>
       </Col>
@@ -23,6 +23,20 @@ import { VueEditor } from 'vue2-editor'
 import { mapGetters } from 'vuex'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          Title: '标题'
+        }
+      },
+      en_US: {
+        message: {
+          Title: 'Title'
+        }
+      }
+    }
+  },
   computed: {
     ...mapGetters('news', [
       'news'

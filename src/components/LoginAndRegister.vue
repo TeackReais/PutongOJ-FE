@@ -31,7 +31,7 @@
     <div slot="footer">
       <Row type="flex" justify="center">
         <Col :span="20">
-          <Button type="primary" size="large" long @click="submit">Submit</Button>
+          <Button type="primary" size="large" long @click="submit">{{$t("message.Submit")}}</Button>
         </Col>
       </Row>
     </div>
@@ -44,17 +44,31 @@ import { TRIGGER_LOGIN } from '@/store/types'
 import only from 'only'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          Submit: '提交'
+        }
+      },
+      en_US: {
+        message: {
+          Submit: 'Submit'
+        }
+      }
+    }
+  },
   data () {
     // 自定义验证规则
     const validatePass1 = (rule, value, callback) => {
       // 5-50位, 数字, 字母, 字符至少包含两种, 同时不能包含中文和空格
       const error = !/[0-9a-zA-Z]{5,50}$/.test(value)
-        ? new Error('密码长度需5-50位，只能包含字母或字符') : null
+          ? new Error('密码长度需5-50位，只能包含字母或字符') : null
       error ? callback(error) : callback()
     }
     // 验证密码是否重复
     const validatePass2 = (rule, value, callback) => {
-      const error = value !== this.form.pwd ? new Error('两次密码输入不一致') : null
+        const error = value !== this.form.pwd ? new Error('两次密码输入不一致') : null
       error ? callback(error) : callback()
     }
     const basicRules = {
@@ -106,9 +120,9 @@ export default {
           if (valid) { // 验证通过
             this.login(only(this.form, 'uid pwd'))
               .then(() => {
-                this.$Message.success(`Welcome, ${this.form.uid} !`)
-                this.triggerLogin()
-              })
+              this.$Message.success(`Welcome, ${this.form.uid} !`)
+              this.triggerLogin()
+            })
           }
         })
       } else {
@@ -116,10 +130,10 @@ export default {
           if (valid) { // 验证通过
             this.register(this.form)
               .then(() => {
-                // 注册好后，自动登录
-                this.mode = 'login'
-                this.submit()
-              })
+              // 注册好后，自动登录
+              this.mode = 'login'
+              this.submit()
+            })
           }
         })
       }

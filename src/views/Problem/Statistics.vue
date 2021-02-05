@@ -3,11 +3,11 @@
     <div class="left">
       <table>
         <tr>
-          <th class="t1">Result</th>
-          <th class="t2">Amount</th>
+          <th class="t1">{{$t("message.Result")}}</th>
+          <th class="t2">{{$t("message.Amount")}}</th>
         </tr>
         <tr>
-          <td class="t1">Total Submissions</td>
+          <td class="t1">{{$t("message.TotalSubmissions")}}</td>
           <td class="t2">
             <router-link :to="{ name: 'status', query: { pid } }">
               {{ sumCharts }}
@@ -30,13 +30,13 @@
     <div class="right">
       <table>
         <tr>
-          <th>Rank</th>
-          <th>Username</th>
-          <th>Time</th>
-          <th>Memory</th>
-          <th>Length</th>
-          <th>Lang</th>
-          <th>Submit Time</th>
+          <th>{{$t("message.Rank")}}</th>
+          <th>{{$t("message.Username")}}</th>
+          <th>{{$t("message.Time")}}</th>
+          <th>{{$t("message.Memory")}}</th>
+          <th>{{$t("message.Length")}}</th>
+          <th>{{$t("message.Lang")}}</th>
+          <th>{{$t("message.SubmitTime")}}</th>
         </tr>
         <tr v-for="(item, index) in list">
           <td>{{ index + 1 }}</td>
@@ -78,6 +78,38 @@ import { mapGetters, mapActions } from 'vuex'
 import constant from '@/util/constant.js'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          Result: '结果',
+          Amount: '数量',
+          TotalSubmissions: '总提交数',
+          Rank: '排名',
+          Username: '用户名',
+          Time: '时间',
+          Memory: '内存',
+          Length: '长度',
+          SubmitTime: '提交时间',
+          Lang: '语言'
+        }
+      },
+      en_US: {
+        message: {
+          Result: 'Result',
+          Amount: 'Amount',
+          TotalSubmissions: 'Total Submissions',
+          Rank: 'Rank',
+          Username: 'Username',
+          Time: 'Time',
+          Memory: 'Memory',
+          Length: 'Length',
+          SubmitTime: 'Submit Time',
+          Lang: 'Lang'
+        }
+      }
+    }
+  },
   components: {
     'chart': ECharts
   },

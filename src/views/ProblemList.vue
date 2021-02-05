@@ -13,18 +13,18 @@
         <Input v-model="content" icon="search" placeholder="Please input..." @keyup.enter.native="search"></Input>
       </Col>
       <Col :span="2">
-        <Button type="primary" @click="search">Search</Button>
+        <Button type="primary" @click="search">{{$t("message.Search")}}</Button>
       </Col>
     </Row>
     <table>
       <tr>
         <th>#</th>
         <th>PID</th>
-        <th>Title</th>
-        <th>Ratio</th>
+        <th>{{$t("message.Title")}}</th>
+        <th>{{$t("message.Ratio")}}</th>
         <th>Tags</th>
-        <th v-if="isAdmin">Visible</th>
-        <th v-if="isAdmin">Delete</th>
+        <th v-if="isAdmin">{{$t("message.Visiable")}}</th>
+        <th v-if="isAdmin">{{$t("message.Delete")}}</th>
       </tr>
       <template v-for="(item, index) in list">
         <tr v-if="isAdmin || item.status === status.Available">
@@ -61,7 +61,7 @@
             </Tooltip>
           </td>
           <td v-if="isAdmin">
-            <Button type="text" @click="del(item.pid)">Delete</Button>
+            <Button type="text" @click="del(item.pid)">{{$t("message.Delete")}}</Button>
           </td>
         </tr>
       </template>
@@ -76,6 +76,28 @@ import { purify } from '@/util/helper'
 import constant from '@/util/constant'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          Search: '查找',
+          Title: '标题',
+          Ratio: '通过率',
+          Visiable: '是否可见',
+          Delete: '删除'
+        }
+      },
+      en_US: {
+        message: {
+          Search: 'Search',
+          Title: 'Title',
+          Ratio: 'Ratio',
+          Visiable: 'Visiable',
+          Delete: 'Delete'
+        }
+      }
+    }
+  },
   data () {
     return {
       options: [
@@ -150,8 +172,8 @@ export default {
     },
     change (problem) {
       problem.status = problem.status === this.status.Reserve
-        ? this.status.Available
-        : this.status.Reserve
+          ? this.status.Available
+          : this.status.Reserve
       this.$store.dispatch('problem/update', problem).then(() => {
         this.$store.dispatch('problem/find', this.query)
       })
@@ -201,3 +223,4 @@ table
   th:nth-child(7)
     width: 10%
 </style>
+

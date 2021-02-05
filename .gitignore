@@ -1,5 +1,6 @@
 .DS_Store
 node_modules/
+src的副本/
 /dist/
 dist.zip
 npm-debug.log*

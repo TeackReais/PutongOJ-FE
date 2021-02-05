@@ -2,7 +2,7 @@
   <div>
     <Row class="filter">
       <Col :offset="1" :span="5">
-        <Col :span="6"><label>User</label></Col>
+        <Col :span="6"><label>{{$t("message.User")}}</label></Col>
         <Col :span="15"><Input v-model="uid" placeholder="username"></Input></Col>
       </Col>
       <Col :span="4">
@@ -10,7 +10,7 @@
         <Col :span="15"><Input v-model="pid" placeholder="pid"></Input></Col>
       </Col>
       <Col :span="6">
-        <Col :span="6"><label>Judge</label></Col>
+        <Col :span="6"><label>{{$t("message.Judge")}}</label></Col>
         <Col :span="16">
           <Select v-model="judge" placeholder="请选择">
             <Option
@@ -23,7 +23,7 @@
         </Col>
       </Col>
       <Col :span="4">
-        <Col :span="12"><label>Language</label></Col>
+        <Col :span="12"><label>{{$t("message.Language")}}</label></Col>
         <Col :span="12">
           <Select v-model="language" placeholder="请选择">
             <Option
@@ -36,7 +36,7 @@
         </Col>
       </Col>
       <Col :span="3">
-        <Button type="primary" @click="search" icon="search">Search</Button>
+        <Button type="primary" @click="search" icon="search">{{$t("message.Search")}}</Button>
       </Col>
     </Row>
     <Row class="pagination" type="flex" justify="start">
@@ -48,12 +48,12 @@
       <tr>
         <th>SID</th>
         <th>PID</th>
-        <th>Username</th>
-        <th>Judge</th>
-        <th>Time/ms</th>
-        <th>Memory/kb</th>
-        <th>Language</th>
-        <th>Submit Time</th>
+        <th>{{$t("message.Username")}}</th>
+        <th>{{$t("message.Judge")}}</th>
+        <th>{{$t("message.Time")}}/ms</th>
+        <th>{{$t("message.Memory")}}/kb</th>
+        <th>{{$t("message.Language")}}</th>
+        <th>{{$t("message.SubmitTime")}}</th>
       </tr>
       <tr v-for="(item, index) in list">
         <td>{{ item.sid }}</td>
@@ -90,6 +90,34 @@ import constant from '@/util/constant'
 import { purify } from '@/util/helper'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          User: '用户',
+          Judge: '结果',
+          Language: '语言',
+          Username: '用户名',
+          Time: '时间',
+          Memory: '内存',
+          SubmitTime: '提交时间',
+          Search: '查找'
+        }
+      },
+      en_US: {
+        message: {
+          User: 'User',
+          Judge: 'Judge',
+          Language: 'Language',
+          Username: 'Username',
+          Time: 'Time',
+          Memory: 'Memory',
+          SubmitTime: 'Submit Time',
+          Search: 'Search'
+        }
+      }
+    }
+  },
   data () {
     return {
       mid: this.$route.params.cid,

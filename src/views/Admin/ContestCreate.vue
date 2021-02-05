@@ -10,7 +10,7 @@
     </Steps>
     <br>
     <oj-contest-edit :contest="contest"></oj-contest-edit>
-    <Button type="primary" size="large" @click="submit">Submit</Button>
+    <Button type="primary" size="large" @click="submit">{{ $t("message.Submit") }}</Button>
   </div>
 </template>
 
@@ -19,6 +19,20 @@ import ContestEdit from '@/components/ContestEdit'
 import { mapGetters } from 'vuex'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          Submit: '提交'
+        }
+      },
+      en_US: {
+        message: {
+          Submit: 'Submit'
+        }
+      }
+    }
+  },
   data () {
     return {
       contest: {
@@ -49,8 +63,8 @@ export default {
         this.$store.dispatch('contest/create', this.contest)
           .then((cid) => {
             this.$Message.success(`Contest "${this.contest.title}" has been created!`)
-            this.$router.push({ name: 'contestOverview', params: { cid } })
-          })
+          this.$router.push({ name: 'contestOverview', params: { cid } })
+        })
       }
     }
   },
