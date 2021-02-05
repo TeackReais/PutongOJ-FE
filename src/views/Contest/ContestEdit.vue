@@ -3,7 +3,7 @@
     <!-- <pre>{{ jobs }} </pre> -->
     <!-- 这个注释故意留着，有时候偶用于调试蛮方便的 -->
     <oj-contest-edit :contest="contest" :overview="overview"></oj-contest-edit>
-    <Button type="primary" @click="submit">Submit</Button>
+    <Button type="primary" @click="submit">{{$t("message.Submit")}}</Button>
   </div>
 </template>
 
@@ -13,6 +13,20 @@ import only from 'only'
 import { mapGetters } from 'vuex'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          Submit: '提交'
+        }
+      },
+      en_US: {
+        message: {
+          Submit: 'Submit'
+        }
+      }
+    }
+  },
   computed: {
     ...mapGetters('contest', ['contest', 'overview'])
   },
@@ -20,7 +34,7 @@ export default {
     submit () {
       this.$store.dispatch('contest/update', this.contest).then(({ data }) => {
         this.$Message.success('提交成功！')
-        this.$router.push({name: 'contestOverview', params: only(data, 'cid')})
+this.$router.push({name: 'contestOverview', params: only(data, 'cid')})
       })
     }
   },

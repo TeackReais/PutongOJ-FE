@@ -2,8 +2,8 @@
   <div>
     <h1>{{ this.$route.params.id }}:  {{ title }}</h1>
     <submit></submit>
-    <Button type="primary" @click="submit">Submit</Button>
-    <Button type="ghost" style="margin-left: 8px" @click="reset">Reset</Button>
+    <Button type="primary" @click="submit">{{$t("message.Submit")}}</Button>
+    <Button type="ghost" style="margin-left: 8px" @click="reset">{{$t("message.Reset")}}</Button>
   </div>
 </template>
 
@@ -12,6 +12,22 @@ import Submit from '@/components/Submit'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          Submit: '提交',
+          Reset: '重置'
+        }
+      },
+      en_US: {
+        message: {
+          Submit: 'Submit',
+          Reset: 'Reset'
+        }
+      }
+    }
+  },
   data: () => ({
     title: ''
   }),
