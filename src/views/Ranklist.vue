@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="rank-wrap">
     <Row style="margin-bottom: 20px" type="flex" justify="end">
-      <Col :span="1"><label>Group</label></Col>
+      <Col :span="1"><label>{{$t("message.Group")}}</label></Col>
       <Col :span="3">
         <Select v-model="group">
           <Option v-for="item in groupList" :value="item.gid" :key="item.gid">{{ item.title }}</Option>
@@ -13,13 +13,13 @@
     </Row>
     <table>
       <tr>
-        <th>Rank</th>
-        <th>Username</th>
-        <th>Nick</th>
-        <th>Motto</th>
-        <th>Solve</th>
-        <th>Submit</th>
-        <th>Ratio</th>
+        <th>{{$t("message.Rank")}}</th>
+        <th>{{$t("message.Username")}}</th>
+        <th>{{$t("message.Nick")}}</th>
+        <th>{{$t("message.Motto")}}</th>
+        <th>{{$t("message.Solve")}}</th>
+        <th>{{$t("message.Submit")}}</th>
+        <th>{{$t("message.Ratio")}}</th>
       </tr>
       <tr v-for="(item, index) in list" :key="item.uid">
         <td>{{ index + 1 + (page -1) * pageSize }}</td>
@@ -59,6 +59,34 @@ import only from 'only'
 import { purify } from '@/util/helper'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          Rank: '排名',
+          Group: '用户组',
+          Username: '用户名',
+          Solved: '解决数',
+          Submit: '提交数',
+          Nick: '昵称',
+          Ratio: '通过率',
+          Motto: '座右铭'
+        }
+      },
+      en_US: {
+        message: {
+          Rank: 'Rank',
+          Group: 'Group',
+          Username: 'Username',
+          Solved: 'Solved',
+          Submit: 'Submit',
+          Nick: 'Nick',
+          Ratio: 'Ratio',
+          Motto: 'Motto'
+        }
+      }
+    }
+  },
   data () {
     return {
       page: parseInt(this.$route.query.page) || 1,
@@ -90,8 +118,8 @@ export default {
       this.$store.dispatch('ranklist/find', this.query)
       this.$store.dispatch('group/find').then(() => {
         this.groupList = [{
-          gid: '',
-          title: 'ALL'
+            gid: '',
+            title: 'ALL'
         }]
         this.groups.map((item) => {
           this.groupList.push(item)

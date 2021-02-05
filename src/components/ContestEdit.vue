@@ -1,13 +1,13 @@
 <template lang="html">
   <div>
     <Row type="flex" justify="start">
-      <Col :span="2" class="label">Title</Col>
+      <Col :span="2" class="label">{{$t("message.Title")}}</Col>
       <Col :span="21">
         <Input v-model="contest.title"></Input>
       </Col>
     </Row>
     <Row  type="flex" justify="start">
-      <Col :span="2" class="label">Start Time</Col>
+      <Col :span="2" class="label">{{$t("message.StartTime")}}</Col>
       <Col :span="8">
         <DatePicker
           type="datetime"
@@ -17,7 +17,7 @@
       </Col>
     </Row>
     <Row  type="flex" justify="start">
-      <Col :span="2" class="label">End Time</Col>
+      <Col :span="2" class="label">{{$t("message.EndTime")}}</Col>
       <Col :span="8">
         <DatePicker
           type="datetime"
@@ -27,7 +27,7 @@
       </Col>
     </Row>
     <Row type="flex" justify="start">
-      <Col :span="2" class="label">Type</Col>
+      <Col :span="2" class="label">{{$t("message.Type")}}</Col>
       <Col :span="4">
         <Select v-model="contest.encrypt" placeholder="请选择">
           <Option
@@ -50,7 +50,7 @@
         :filter-method="filterMethod"
         @on-change="handleChange">
         <div :style="{float: 'right', margin: '5px'}">
-          <Button type="ghost" size="small" @click="saveUser">Save</Button>
+          <Button type="ghost" size="small" @click="saveUser">{{$t("message.Save")}}</Button>
         </div>
       </Transfer>
     </Row>
@@ -79,7 +79,7 @@
         <Input v-model="pid" placeholder="Add a pid" @keyup.enter.native="add"></Input>
       </Col>
       <Col :span="2">
-        <Button type="primary" @click="add">Add</Button>
+        <Button type="primary" @click="add">{{$t("message.Add")}}</Button>
       </Col>
     </Row>
     <Row>
@@ -94,6 +94,30 @@ import only from 'only'
 import { mapGetters } from 'vuex'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          Title: '标题',
+          StartTime: '开始时间',
+          EndTime: '结束时间',
+          Type: '类型',
+          Add: '添加',
+          Save: '保存'
+        }
+      },
+      en_US: {
+        message: {
+          Title: 'Title',
+          StartTime: 'Start Time',
+          EndTime: 'End Time',
+          Type: 'Type',
+          Add: 'Add',
+          Save: 'Save'
+        }
+      }
+    }
+  },
   data () {
     return {
       jobs: {},
