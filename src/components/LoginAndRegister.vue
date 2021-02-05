@@ -31,7 +31,7 @@
     <div slot="footer">
       <Row type="flex" justify="center">
         <Col :span="20">
-          <Button type="primary" size="large" long @click="submit">Submit</Button>
+          <Button type="primary" size="large" long @click="submit">{{$t("message.Submit")}}</Button>
         </Col>
       </Row>
     </div>
@@ -44,6 +44,20 @@ import { TRIGGER_LOGIN } from '@/store/types'
 import only from 'only'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          Submit: '提交'
+        }
+      },
+      en_US: {
+        message: {
+          Submit: 'Submit'
+        }
+      }
+    }
+  },
   data () {
     // 自定义验证规则
     const validatePass1 = (rule, value, callback) => {

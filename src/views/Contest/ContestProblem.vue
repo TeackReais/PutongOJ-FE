@@ -8,7 +8,7 @@
     <problem :problem="problem">
       <h1 slot="title">{{ this.$route.params.id }}:  {{ problem.title }}</h1>
     </problem>
-    <Button type="ghost" shape="circle" icon="ios-paperplane" @click="submit">Submit</Button>
+    <Button type="ghost" shape="circle" icon="ios-paperplane" @click="submit">{{$t("message.Submit")}}</Button>
   </div>
 </template>
 
@@ -17,6 +17,20 @@ import Problem from '@/components/Problem'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          Submit: '提交'
+        }
+      },
+      en_US: {
+        message: {
+          Submit: 'Submit'
+        }
+      }
+    }
+  },
   data () {
     return {
       proIndex: parseInt(this.$route.params.id)
@@ -86,3 +100,4 @@ ul
     background-color: #e040fb
     border-color: #e040fb
 </style>
+

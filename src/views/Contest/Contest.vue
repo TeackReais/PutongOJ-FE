@@ -2,11 +2,11 @@
   <div class="conin-wrap">
     <Card class="card">
       <Row type="flex" justify="center">
-        <Col :span="6">Begin: {{ contest.start | timePretty }}</Col>
-        <Col :span="12" v-if="currentTime < contest.start">Ready</Col>
-        <Col :span="12" v-if="currentTime > contest.start && currentTime < contest.end">Running</Col>
-        <Col :span="12" v-if="currentTime > contest.end">Ended</Col>
-        <Col :span="6">End: {{ contest.end | timePretty }}</Col>
+        <Col :span="6">{{$t("message.Begin")}}: {{ contest.start | timePretty }}</Col>
+        <Col :span="12" v-if="currentTime < contest.start">{{$t("message.Ready")}}</Col>
+        <Col :span="12" v-if="currentTime > contest.start && currentTime < contest.end">{{$t("message.Running")}}</Col>
+        <Col :span="12" v-if="currentTime > contest.end">{{$t("message.Ended")}}</Col>
+        <Col :span="6">{{$t("message.End")}}: {{ contest.end | timePretty }}</Col>
       </Row>
         <Progress :stroke-width="18" :percent="timePercentage"></Progress>
     </Card>
@@ -27,6 +27,28 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          Begin: '开始时间',
+          Ready: '准备中',
+          Running: '进行中',
+          Ended: '已经结束',
+          End: '结束时间'
+        }
+      },
+      en_US: {
+        message: {
+          Begin: 'Begin',
+          Ready: 'Ready',
+          Running: 'Running',
+          Ended: 'Ended',
+          End: 'End'
+        }
+      }
+    }
+  },
   data () {
     return {
       display: ''

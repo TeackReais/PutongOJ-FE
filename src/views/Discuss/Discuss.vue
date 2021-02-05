@@ -3,9 +3,9 @@
     <table>
       <tr>
         <th>Did</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Updated</th>
+        <th>{{$t("message.Title")}}</th>
+        <th>{{$t("message.Author")}}</th>
+        <th>{{$t("message.Updated")}}</th>
       </tr>
       <template v-for="item in list">
         <tr>
@@ -25,7 +25,7 @@
         </tr>
       </template>
     </table>
-    <h3>Create New Thread</h3>
+    <h3>{{$t("message.CreateNewThread")}}</h3>
     <Form :model="form" label-position="right" :label-width="100" class="form">
       <FormItem label="Title">
           <Input v-model="form.title"></Input>
@@ -34,8 +34,8 @@
           <Input v-model="form.content" type="textarea" :autosize="{minRows: 2,maxRows: 20}"></Input>
       </FormItem>
       <FormItem>
-        <Button type="primary" @click="createNew" :loading="loading" :disabled="!isLogined">Submit</Button>
-        <span v-if="!isLogined">Login to reply</span>
+        <Button type="primary" @click="createNew" :loading="loading" :disabled="!isLogined">{{$t("message.Submit")}}</Button>
+        <span v-if="!isLogined">{{$t("message.Logintoreply")}}</span>
     </FormItem>
   </Form>
   </div>
@@ -45,6 +45,30 @@
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          Title: '标题',
+          Author: '作者',
+          Updated: '最后更新',
+          CreateNewThread: '创建新的讨论',
+          Logintoreply: '登录后回复',
+          Submit: '提交'
+        }
+      },
+      en_US: {
+        message: {
+          Title: 'Title',
+          Author: 'Author',
+          Updated: 'Updated',
+          CreateNewThread: 'Create New Thread',
+          Logintoreply: 'Login to reply',
+          Submit: 'Submit'
+        }
+      }
+    }
+  },
   data () {
     return {
       form: {

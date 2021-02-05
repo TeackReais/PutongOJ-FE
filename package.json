@@ -16,14 +16,18 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
+    "install": "^0.13.0",
     "iview": "^2.8.0",
+    "npm": "^7.5.2",
     "url-join": "^4.0.0",
     "vue": "^2.5.2",
+    "vue-i18n": "^8.22.4",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
     "vuex-router-sync": "^5.0.0"
   },
   "devDependencies": {
+    "@kazupon/vue-i18n-loader": "^0.5.0",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",

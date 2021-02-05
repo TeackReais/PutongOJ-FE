@@ -20,11 +20,11 @@
         <Row class="border" type="flex" justify="center">
           <Col :span="12">
             <h1>{{ user.solve }}</h1>
-            <h4>Solved</h4>
+            <h4>{{$t("message.Solved")}}</h4>
           </Col>
           <Col :span="12">
             <h1>{{ user.submit }}</h1>
-            <h4>Submit</h4>
+            <h4>{{$t("message.Submit")}}</h4>
           </Col>
         </Row>
       </Col>
@@ -32,13 +32,13 @@
         <Tabs v-model="display">
           <TabPane label="Overview" name="overview">
             <div class="solved">
-              <div class="solved-name">Solved</div>
+              <div class="solved-name">{{$t("message.Solved2")}}</div>
               <Button v-for="(item, index) in solved" :key="item" type="text">
                 <router-link :to="{ name: 'problemInfo', params: { pid: item } }">{{ item }}</router-link>
               </Button>
             </div>
             <div class="unsolved">
-              <div class="unsolved-name">Unolved</div>
+              <div class="unsolved-name">{{$t("message.Unsolved")}}</div>
               <Button v-for="item in unsolved" :key="item" type="text">
                 <router-link :to="{ name: 'problemInfo', params: { pid: item } }">{{ item }}</router-link>
               </Button>
@@ -46,44 +46,44 @@
           </TabPane>
           <TabPane label="Edit" name="edit" class="edit" v-if="profile && profile.uid === user.uid">
             <Row class="nick">
-              <Col :span="2" class="label">Nick</Col>
+              <Col :span="2" class="label">{{$t("message.Nick")}}</Col>
               <Col :span="12">
                 <Input v-model="user.nick"></Input>
               </Col>
             </Row>
             <Row>
-              <Col :span="2" class="label">Motto</Col>
+              <Col :span="2" class="label">{{$t("message.Motto")}}</Col>
               <Col :span="12">
                 <Input v-model="user.motto"></Input>
               </Col>
             </Row>
             <Row>
-              <Col :span="2" class="label">School</Col>
+              <Col :span="2" class="label">{{$t("message.School")}}</Col>
               <Col :span="12">
                 <Input v-model="user.school"></Input>
               </Col>
             </Row>
             <Row>
-              <Col :span="2" class="label">Mail</Col>
+              <Col :span="2" class="label">{{$t("message.Mail")}}</Col>
               <Col :span="12">
                 <Input v-model="user.mail"></Input>
               </Col>
             </Row>
             <Row>
-              <Col :span="2" class="label">Password</Col>
+              <Col :span="2" class="label">{{$t("message.Password")}}</Col>
               <Col :span="12">
                 <Input v-model="newPwd" type="password" placeholder="Leave it blank if it is not changed"></Input>
               </Col>
             </Row>
             <Row>
-              <Col :span="2" class="label">CheckPwd</Col>
+              <Col :span="2" class="label">{{$t("message.CheckPwd")}}</Col>
               <Col :span="12">
                 <Input v-model="checkPwd" type="password" placeholder="Leave it blank if it is not changed"></Input>
               </Col>
             </Row>
             <Row class="submit">
               <Col :offset="6" :span="6">
-                <Button type="primary" size="large" @click="submit">Submit</Button>
+                <Button type="primary" size="large" @click="submit">{{$t("message.Submit2")}}</Button>
               </Col>
             </Row>
           </TabPane>
@@ -98,6 +98,40 @@ import { mapGetters, mapActions } from 'vuex'
 import { purify } from '@/util/helper'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          Solved: '解决的问题数',
+          Submit: '提交的次数',
+          Solved2: '解决的问题',
+          Unsolved: '未解决的问题',
+          Nick: '昵称',
+          School: '学校',
+          Motto: '座右铭',
+          Mail: '邮箱',
+          Password: '密码',
+          CheckPwd: '确认密码',
+          Submit2: '提交'
+        }
+      },
+      en_US: {
+        message: {
+          Solved: 'Solved',
+          Submit: 'Submit',
+          Solved2: 'Solved',
+          Unsolved: 'Unsolved',
+          Nick: 'Nick',
+          School: 'School',
+          Motto: 'Motto',
+          Mail: 'Mail',
+          Password: 'Password',
+          CheckPwd: 'CheckPwd',
+          Submit2: 'Submit'
+        }
+      }
+    }
+  },
   data: () => ({
     display: 'overview',
     newPwd: '',
@@ -111,6 +145,13 @@ export default {
       group: 'user/group',
       profile: 'session/profile'
     })
+    // Leaveitblankifitisnotchanged: function () {
+    //   if (this.$root.$i18n.locale === "zh_CN") {
+    //     return "如果不修改请保留空白";
+    //   } else if (this.$root.$i18n.locale === "en_US") {
+    //     return "Leave it blank if it is not changed";
+    //   }
+    // },
   },
   created () {
     this.fetch()

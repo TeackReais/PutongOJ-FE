@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="home-wrap">
-    <div class="news">NewsList</div>
+    <div class="news">{{$t("message.NewsList")}}</div>
     <Card v-for="(item, index) in list" :key="item.nid">
       <Row type="flex" align="middle">
         <Col :span="2">
@@ -27,6 +27,20 @@ import { purify } from '@/util/helper'
 import only from 'only'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          NewsList: '通知列表'
+        }
+      },
+      en_US: {
+        message: {
+          NewsList: 'NewsList'
+        }
+      }
+    }
+  },
   data () {
     return {
       currentPage: 1,

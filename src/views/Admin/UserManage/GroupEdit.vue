@@ -2,7 +2,7 @@
   <div>
     <h1>管理用户组</h1>
     <Row type="flex" justify="start">
-      <Col :span="2" class="label">Group</Col>
+      <Col :span="2" class="label">{{ $t("message.Group") }}</Col>
       <Col :span="4">
         <Select v-model="ind" filterable>
           <Option v-for="(item, index) in groupList" :value="index" :key="item.gid">{{ item.title }}</Option>
@@ -11,13 +11,19 @@
       <Col :offset="1" :span="2">
         <Dropdown @on-click="manageGroup">
           <Button type="primary">
-            Manage
+            {{ $t("message.Manage") }}
             <Icon type="arrow-down-b"></Icon>
           </Button>
           <DropdownMenu slot="list">
-            <DropdownItem name="search">Search</DropdownItem>
-            <DropdownItem name="create">Create</DropdownItem>
-            <DropdownItem name="delete">Delete</DropdownItem>
+            <DropdownItem name="search">{{
+              $t("message.Search")
+            }}</DropdownItem>
+            <DropdownItem name="create">{{
+              $t("message.Create")
+            }}</DropdownItem>
+            <DropdownItem name="delete">{{
+              $t("message.Delete")
+            }}</DropdownItem>
           </DropdownMenu>
         </Dropdown>
       </Col>
@@ -28,7 +34,7 @@
       </Col>
     </Row>
     <Row type="flex" justify="start">
-      <Col :span="2" class="label">Title</Col>
+      <Col :span="2" class="label">{{ $t("message.Title") }}</Col>
       <Col :span="4">
         <Input v-model="group.title"></Input>
       </Col>
@@ -42,9 +48,12 @@
       filterable
       :filter-method="filterMethod"
       @on-change="handleChange"
-      class="tranfer">
+      class="tranfer"
+    >
     </Transfer>
-    <Button type="primary" @click="saveGroup" class="submit">Submit</Button>
+    <Button type="primary" @click="saveGroup" class="submit">{{
+      $t("message.Submit")
+    }}</Button>
   </div>
 </template>
 
@@ -53,6 +62,32 @@ import { mapGetters } from 'vuex'
 import only from 'only'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          Group: '用户组',
+          Title: '标题',
+          Submit: '提交',
+          Search: '查找',
+          Create: '创建',
+          Delete: '删除',
+          Manage: '管理'
+        }
+      },
+      en_US: {
+        message: {
+          Group: 'Group',
+          Title: 'Title',
+          Submit: 'Submit',
+          Search: 'Search',
+          Create: 'Create',
+          Delete: 'Delete',
+          Manage: 'Manage'
+        }
+      }
+    }
+  },
   data: () => ({
     ind: 0,
     targetKeys: [],

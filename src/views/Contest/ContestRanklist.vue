@@ -8,10 +8,10 @@
       <table>
         <tr>
           <th>#</th>
-          <th>User</th>
-          <th>Nick</th>
-          <th>Solve</th>
-          <th>Penalty</th>
+          <th>{{$t("message.User")}}</th>
+          <th>{{$t("message.Nick")}}</th>
+          <th>{{$t("message.Solve")}}</th>
+          <th>{{$t("message.Penalty")}}</th>
           <th v-for="(item, index) in contest.list">
             {{ index + 1 }}
           </th>
@@ -42,6 +42,26 @@
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          User: '用户',
+          Nick: '昵称',
+          Solve: '解决问题数',
+          Penalty: '总时长'
+        }
+      },
+      en_US: {
+        message: {
+          User: 'User',
+          Nick: 'Nick',
+          Solve: 'Solve',
+          Penalty: 'Penalty'
+        }
+      }
+    }
+  },
   data: () => ({
     timer: null
   }),

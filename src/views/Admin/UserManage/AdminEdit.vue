@@ -2,26 +2,31 @@
   <div>
     <h1>增删管理员</h1>
     <Row type="flex" justify="start">
-      <Col :span="2" class="label">Username</Col>
+      <Col :span="2" class="label">{{ $t("message.Username") }}</Col>
       <Col :span="4">
         <Input v-model="admin" @keyup.enter.native="add"></Input>
       </Col>
       <Col :offset="1" :span="2">
-        <Button type="primary" @click="add">Add</Button>
+        <Button type="primary" @click="add">{{ $t("message.Add") }}</Button>
       </Col>
     </Row>
     <table>
       <tr>
-        <th>Username</th>
-        <th>Nick</th>
-        <th>Remove</th>
+        <th>{{ $t("message.Username") }}</th>
+        <th>{{ $t("message.Nick") }}</th>
+        <th>{{ $t("message.Remove") }}</th>
       </tr>
       <template v-for="item in adminList">
         <tr>
           <td>{{ item.uid }}</td>
           <td>{{ item.nick }}</td>
           <td>
-            <Button v-if="item.uid !== 'admin'" type="text" @click="remove(item)">Remove</Button>
+            <Button
+              v-if="item.uid !== 'admin'"
+              type="text"
+              @click="remove(item)"
+              >{{ $t("message.Remove") }}</Button
+            >
           </td>
         </tr>
       </template>
@@ -34,6 +39,26 @@ import { mapGetters } from 'vuex'
 import only from 'only'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          Username: '用户名',
+          Add: '添加',
+          Nick: '昵称',
+          Remove: '删除'
+        }
+      },
+      en_US: {
+        message: {
+          Username: 'Username',
+          Add: 'Add',
+          Nick: 'Nick',
+          Remove: 'Remove'
+        }
+      }
+    }
+  },
   data: () => ({
     admin: ''
   }),

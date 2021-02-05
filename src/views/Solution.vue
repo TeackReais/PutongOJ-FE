@@ -2,33 +2,33 @@
   <div v-if="solution">
     <h1>{{ result[solution.judge] }}</h1>
     <p>
-      <span>Problem:
+      <span>{{$t("message.Problem")}}:
         <router-link :to="{name: 'problemInfo', params: {pid: solution.pid}}">
           {{ solution.pid }}
         </router-link>
       </span>
-      <span>Memory: {{ solution.memory }} KB</span>
-      <span>Runtime: {{ solution.time }} MS</span>
-      <span>Author:
+      <span>{{$t("message.Memory")}}: {{ solution.memory }} KB</span>
+      <span>{{$t("message.Runtime")}}: {{ solution.time }} MS</span>
+      <span>{{$t("message.Author")}}:
         <router-link :to="{name: 'userInfo', params: {uid: solution.uid}}">
           {{ solution.uid }}
         </router-link>
       </span>
     </p>
     <hr>
-    <h2>Testcases</h2>
+    <h2>{{$t("message.Testcases")}}</h2>
     <table>
       <tr>
         <th>Uuid</th>
-        <th>Time/ms</th>
-        <th>Memory/kb</th>
-        <th>Result</th>
+        <th>{{$t("message.Time")}}/ms</th>
+        <th>{{$t("message.Memory")}}/kb</th>
+        <th>{{$t("message.Result")}}</th>
       </tr>
       <template v-for="(item, index) in solution.testcases">
         <tr>
           <td>{{ item.uuid.slice(0, 8) }}
-            <a :href="testcaseUrl(item, 'in')" target="_blank">TestIn</a>
-            <a :href="testcaseUrl(item, 'out')" target="_blank">TestOut</a>
+            <a :href="testcaseUrl(item, 'in')" target="_blank">{{$t("message.TestIn")}}</a>
+            <a :href="testcaseUrl(item, 'out')" target="_blank">{{$t("message.TestOut")}}</a>
           </td>
           <td>{{ item.time }}</td>
           <td>{{ item.memory }}</td>
@@ -40,7 +40,7 @@
     <pre class="error" v-if="solution.error"><code>{{ solution.error }}</code></pre>
     <br>
     <Button type="ghost" shape="circle" icon="document" v-clipboard:copy="solution.code" v-clipboard:success="onCopy">
-      Click to copy code
+      {{$t("message.ClickToCopyCode")}}
     </Button>
     <pre><code v-html="prettyCode(solution.code)"></code></pre>
     <div v-if="isAdmin && solution.sim && solution.simSolution">
@@ -73,6 +73,38 @@ highlight.registerLanguage('java', java)
 highlight.registerLanguage('python', python)
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          Problem: '问题',
+          Memory: '内存',
+          Time: '时间',
+          Result: '结果',
+          Runtime: '运行时间',
+          Author: '作者',
+          Testcases: '测试用例',
+          TestIn: '测试输入',
+          TestOut: '测试输出',
+          ClickToCopyCode: '点击复制代码'
+        }
+      },
+      en_US: {
+        message: {
+          Problem: 'Problem',
+          Memory: 'Memory',
+          Time: 'Time',
+          Result: 'Result',
+          Runtime: 'Runtime',
+          Author: 'Author',
+          Testcases: 'Testcases',
+          TestIn: 'TestIn',
+          TestOut: 'TestOut',
+          ClickToCopyCode: 'Click to copy code'
+        }
+      }
+    }
+  },
   data: () => ({
     result: constant.result,
     language: constant.language,

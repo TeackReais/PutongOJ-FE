@@ -21,11 +21,13 @@
             @click="createNew"
             :loading="loading"
             :disabled="!isLogined"
-          >Add a reply</Button>
+          >{{ $t("message.Addareply") }}</Button>
           <span v-if="!isLogined">Login to reply</span>
         </FormItem>
     </Form>
-    <span>You will receive notifications through your email, if anyone replies</span>
+    <span>{{
+      $t("message.Youwillreceivenotificationsthroughyouremailifanyonereplies")
+    }}</span>
   </div>
 </template>
 
@@ -33,6 +35,24 @@
   import { mapGetters, mapActions } from 'vuex'
 
   export default {
+    i18n: {
+      messages: {
+        zh_CN: {
+          message: {
+            Addareply: '回复',
+            Youwillreceivenotificationsthroughyouremailifanyonereplies:
+              '如果有人回复，你将收到邮件通知。'
+          }
+        },
+        en_US: {
+          message: {
+            Addareply: 'Add a reply',
+            Youwillreceivenotificationsthroughyouremailifanyonereplies:
+              'You will receive notifications through your email, if anyone replies'
+          }
+        }
+      }
+    },
     props: {
       did: {
         required: true

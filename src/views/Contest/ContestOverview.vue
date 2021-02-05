@@ -1,14 +1,14 @@
 <template lang="html">
   <div class="conover-wrap">
     <h2>{{ contest.title }}</h2>
-    <h4>Start Time:&nbsp;&nbsp;{{ contest.create | timePretty }}</h4>
-    <h4>End Time:&nbsp;&nbsp;{{ contest.end | timePretty }}</h4>
+    <h4>{{$t("message.StartTime")}}:&nbsp;&nbsp;{{ contest.create | timePretty }}</h4>
+    <h4>{{$t("message.EndTime")}}:&nbsp;&nbsp;{{ contest.end | timePretty }}</h4>
     <table>
       <tr>
         <th>#</th>
         <th>ID</th>
-        <th>Title</th>
-        <th>Ratio</th>
+        <th>{{$t("message.Title")}}</th>
+        <th>{{$t("message.Ratio")}}</th>
       </tr>
       <tr v-for="(item, index) in overview" :key="item.pid">
         <td>
@@ -32,6 +32,26 @@
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          StartTime: '开始时间',
+          EndTime: '结束时间',
+          Title: '标题',
+          Ratio: '通过率'
+        }
+      },
+      en_US: {
+        message: {
+          StartTime: 'Start Time',
+          EndTime: 'End Time',
+          Title: 'Title',
+          Ratio: 'Ratio'
+        }
+      }
+    }
+  },
   data () {
     return {
       cid: this.$route.params.cid
@@ -90,3 +110,4 @@ h4
 table
   margin-bottom: 20px
 </style>
+

@@ -9,12 +9,12 @@
       <tr>
         <th>SID</th>
         <th>PID</th>
-        <th>Username</th>
-        <th>Judge</th>
-        <th>Time/ms</th>
-        <th>Memory/kb</th>
-        <th>Language</th>
-        <th>Submit Time</th>
+        <th>{{$t("message.Username")}}</th>
+        <th>{{$t("message.Judge")}}</th>
+        <th>{{$t("message.Time")}}/ms</th>
+        <th>{{$t("message.Memory")}}/kb</th>
+        <th>{{$t("message.Language")}}</th>
+        <th>{{$t("message.SubmitTime")}}</th>
       </tr>
       <tr v-for="(item, index) in list">
         <td>{{ item.sid }}</td>
@@ -49,6 +49,30 @@ import constant from '@/util/constant'
 import { purify } from '@/util/helper'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          Username: '用户名',
+          Judge: '结果',
+          Time: '时间',
+          Memory: '内存',
+          SubmitTime: '提交时间',
+          Language: '语言'
+        }
+      },
+      en_US: {
+        message: {
+          Username: 'Username',
+          Judge: 'Judge',
+          Time: 'Time',
+          Memory: 'Memory',
+          SubmitTime: 'Submit Time',
+          Language: 'Language'
+        }
+      }
+    }
+  },
   data () {
     return {
       page: parseInt(this.$route.query.page) || 1,

@@ -13,7 +13,7 @@
     <oj-problem-edit
       :problem="problem"
     />
-    <Button type="primary" size="large" @click="submit">Submit</Button>
+    <Button type="primary" size="large" @click="submit">{{ $t("message.Submit") }}</Button>
   </div>
 </template>
 
@@ -22,6 +22,20 @@ import ProblemEdit from '@/components/ProblemEdit'
 import { mapActions } from 'vuex'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          Submit: '提交'
+        }
+      },
+      en_US: {
+        message: {
+          Submit: 'Submit'
+        }
+      }
+    }
+  },
   components: {
     'oj-problem-edit': ProblemEdit
   },

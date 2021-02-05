@@ -3,12 +3,12 @@
     <table>
       <tr>
         <th>CID</th>
-        <th>Title</th>
-        <th>Status</th>
-        <th>Start Time</th>
-        <th>Type</th>
-        <th v-if="isAdmin">Visible</th>
-        <th v-if="isAdmin">Delete</th>
+        <th>{{$t("message.Title")}}</th>
+        <th>{{$t("message.Status")}}</th>
+        <th>{{$t("message.StartTime")}}</th>
+        <th>{{$t("message.Type")}}</th>
+        <th v-if="isAdmin">{{$t("message.Visiable")}}</th>
+        <th v-if="isAdmin">{{$t("message.Delete")}}</th>
       </tr>
       <template v-for="(item, index) in list">
         <tr v-if="isAdmin || item.status === status.Available">
@@ -19,9 +19,9 @@
               <strong v-show="item.status === status.Reserve">Reserved</strong>
             </Tooltip>
           <td>
-            <span class="ready" v-if="item.start > currentTime">Ready</span>
-            <span class="run" v-if="item.start < currentTime && item.end > currentTime">Running</span>
-            <span class="end" v-if="item.end < currentTime" >Ended</span>
+            <span class="ready" v-if="item.start > currentTime">{{$t("message.Ready")}}</span>
+            <span class="run" v-if="item.start < currentTime && item.end > currentTime">{{$t("message.Running")}}</span>
+            <span class="end" v-if="item.end < currentTime" >{{$t("message.Ended")}}</span>
           </td>
           <td>
             <span>{{ item.start | timePretty }}</span>
@@ -37,7 +37,7 @@
             </Tooltip>
           </td>
           <td v-if="isAdmin">
-            <Button type="text" @click="del(item.cid)">Delete</Button>
+            <Button type="text" @click="del(item.cid)">{{$t("message.Delete")}}</Button>
           </td>
         </tr>
       </template>
@@ -58,6 +58,36 @@ import { purify } from '../util/helper'
 import constant from '../util/constant'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          Title: '标题',
+          Status: '提交',
+          StartTime: '开始时间',
+          Type: '种类',
+          Visiable: '是否可见',
+          Delete: '删除',
+          Ready: '准备中',
+          Running: '进行中',
+          Ended: '已经结束'
+        }
+      },
+      en_US: {
+        message: {
+          Title: 'Title',
+          Status: 'Status',
+          StartTime: 'Start Time',
+          Type: 'Type',
+          Visiable: 'Visible',
+          Delete: 'Delete',
+          Ready: 'Ready',
+          Running: 'Running',
+          Ended: 'Ended'
+        }
+      }
+    }
+  },
   data () {
     return {
       currentPage: parseInt(this.$route.query.page) || 1,

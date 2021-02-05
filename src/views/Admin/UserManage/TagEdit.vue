@@ -2,22 +2,22 @@
   <div>
     <h1>管理标签组</h1>
     <Row type="flex" justify="start">
-      <Col :span="2" class="label">Tag</Col>
+      <Col :span="2" class="label">{{ $t("message.Tag") }}</Col>
       <Col :span="4">
         <Select v-model="ind" filterable>
-          <Option v-for="(item, index) in tagList" :value="index" :key="item.tid">{{ item.tid }}</Option>
+<Option v-for="(item, index) in tagList" :value="index" :key="item.tid">{{ item.tid }}</Option>
         </Select>
       </Col>
       <Col :offset="1" :span="2">
         <Dropdown @on-click="manageTag">
           <Button type="primary">
-            Manage
+            {{ $t("message.Manage") }}
             <Icon type="arrow-down-b"></Icon>
           </Button>
           <DropdownMenu slot="list">
-            <DropdownItem name="search">Search</DropdownItem>
-            <DropdownItem name="create">Create</DropdownItem>
-            <DropdownItem name="delete">Delete</DropdownItem>
+            <DropdownItem name="search">{{ $t("message.Search") }}</DropdownItem>
+            <DropdownItem name="create">{{ $t("message.Create") }}</DropdownItem>
+            <DropdownItem name="delete">{{ $t("message.Delete") }}</DropdownItem>
           </DropdownMenu>
         </Dropdown>
       </Col>
@@ -28,7 +28,7 @@
       </Col>
     </Row>
     <Row type="flex" justify="start">
-      <Col :span="2" class="label">Title</Col>
+      <Col :span="2" class="label">{{ $t("message.Title") }}</Col>
       <Col :span="4">
         <Input v-model="tag.tid"></Input>
       </Col>
@@ -44,7 +44,7 @@
       @on-change="handleChange"
       class="tranfer">
     </Transfer>
-    <Button type="primary" @click="saveTag" class="submit">Submit</Button>
+    <Button type="primary" @click="saveTag" class="submit">{{ $t("message.Submit") }}</Button>
   </div>
 </template>
 
@@ -53,6 +53,32 @@ import { mapGetters } from 'vuex'
 import only from 'only'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          Title: '标题',
+          Submit: '提交',
+          Search: '查找',
+          Create: '创建',
+          Delete: '删除',
+          Manage: '管理',
+          Tag: '标签'
+        }
+      },
+      en_US: {
+        message: {
+          Title: 'Title',
+          Submit: 'Submit',
+          Search: 'Search',
+          Create: 'Create',
+          Delete: 'Delete',
+          Manage: 'Manage',
+          Tag: 'Tag'
+        }
+      }
+    }
+  },
   data: () => ({
     ind: 0,
     targetKeys: [],

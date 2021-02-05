@@ -2,7 +2,7 @@
   <div>
     <h1>新增消息</h1>
     <oj-news-edit></oj-news-edit>
-    <Button type="primary" size="large" @click="submit">Submit</Button>
+    <Button type="primary" size="large" @click="submit">{{ $t("message.Submit") }}</Button>
   </div>
 </template>
 
@@ -11,6 +11,20 @@ import NewsEdit from '@/components/NewsEdit'
 import { mapGetters } from 'vuex'
 
 export default {
+  i18n: {
+    messages: {
+      zh_CN: {
+        message: {
+          Submit: '提交'
+        }
+      },
+      en_US: {
+        message: {
+          Submit: 'Submit'
+        }
+      }
+    }
+  },
   data: () => ({
     addNews: {
       title: '',
